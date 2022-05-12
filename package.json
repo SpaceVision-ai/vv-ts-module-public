@@ -28,8 +28,5 @@
         "diagnostics": true
       }
     }
-  },
-  "dependencies": {
-    "@vv-team/schedule-parser": "file:packages/schedule-parser"
   }
 }

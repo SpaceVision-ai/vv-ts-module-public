@@ -1,8 +1,8 @@
 {
-  "name": "@vv-team/schedule-parser",
-  "version": "1.0.0",
+  "name": "@teamdable/vv-schedule-parser",
+  "version": "0.1.0",
   "description": "parse date & schedule from yaml",
-  "author": "wootaegyun <taegyun@dable.io>",
+  "author": "teamdable",
   "homepage": "https://github.com/teamdable/vv-ts-module-public#readme",
   "license": "ISC",
   "main": "lib/parser.js",
@@ -31,5 +31,6 @@
   "dependencies": {
     "@types/js-yaml": "^4.0.5",
     "js-yaml": "^4.1.0"
-  }
+  },
+  "gitHead": "12a4a4e2a9520f6f2ce3955bc473835a7572947e"
 }
