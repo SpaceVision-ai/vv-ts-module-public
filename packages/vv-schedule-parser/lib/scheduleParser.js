@@ -8,14 +8,9 @@ module.exports = class ScheduleParser {
         this.startDate = startDate || utils.formatDateStringWith(new Date());
         this.endDate = endDate || utils.formatDateStringWith(new Date());
         this.schedules = this.convertYamlToSchedule(yamlObject);
-        if (this.schedules.length == 0) {
-            this.topNode = new DateRangeNode(this.defaultAllowAll);
-        }
-        else {
-            this.parseSchedules();
-        }
     }
     get dateRangeList() {
+        this.parseSchedules();
         if (!!this.topNode) {
             return Array.from(this.topNode);
         }
@@ -43,6 +38,10 @@ module.exports = class ScheduleParser {
         });
     }
     parseSchedules() {
+        if (this.schedules.length == 0) {
+            this.topNode = new DateRangeNode(this.defaultAllowAll);
+            return;
+        }
         if (this.isStartWithDeny) {
             this.topNode = new DateRangeNode(this.defaultAllowAll);
         }

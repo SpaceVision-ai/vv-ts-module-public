@@ -1,7 +1,10 @@
 "use strict";
 module.exports = class DateRangeNode {
     constructor(dateRange) {
-        this.dateRange = dateRange;
+        this.dateRange = {
+            from: new Date(dateRange.from),
+            to: new Date(dateRange.to)
+        };
     }
     get next() {
         return this._next;

@@ -12,7 +12,7 @@ module.exports = {
 
     defaultDateRangeFrom: (date: Date): { from: Date, to: Date } => {
         const from = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0)
-        const to = new Date(date.getFullYear() + 1, date.getMonth(), date.getDate(), 24, 0)
+        const to = new Date(date.getFullYear() + 100, date.getMonth(), date.getDate(), 24, 0)
         return { from, to }
     }
 }

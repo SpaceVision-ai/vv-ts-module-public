@@ -7,7 +7,7 @@ module.exports = class DateRangeApplier {
     }
     static applyAllow(topNode, dateRangeList) {
         let result = topNode;
-        for (let dateRange of dateRangeList) {
+        dateRangeList.forEach((dateRange) => {
             let target = result;
             while (!!target) {
                 const targetDateRange = target.dateRange;
@@ -46,12 +46,12 @@ module.exports = class DateRangeApplier {
                 target.next = nextNode;
                 target = target.next;
             }
-        }
+        });
         return result;
     }
     static applyDeny(topNode, dateRangeList) {
         let result = topNode;
-        for (let dateRange of dateRangeList) {
+        dateRangeList.forEach((dateRange) => {
             let target = result;
             while (!!target) {
                 const targetDateRange = target.dateRange;
@@ -75,7 +75,7 @@ module.exports = class DateRangeApplier {
                     .apply();
                 target = target.next;
             }
-        }
+        });
         return result;
     }
 };

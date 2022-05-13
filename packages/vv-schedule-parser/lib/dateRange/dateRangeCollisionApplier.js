@@ -50,10 +50,10 @@ module.exports = class DateRangeCollisionApplier {
         else if (this.dateRange.to > this.targetDateRange.from && this.dateRange.to < this.targetDateRange.to) { // end in target
             (_d = this.endInTargetFN) === null || _d === void 0 ? void 0 : _d.call(this);
         }
-        else if (this.dateRange.to == this.targetDateRange.from) { // stick to start
+        else if (this.dateRange.to.getTime() == this.targetDateRange.from.getTime()) { // stick to start
             (_e = this.stickToTargetStartFN) === null || _e === void 0 ? void 0 : _e.call(this);
         }
-        else if (this.dateRange.from == this.targetDateRange.to) { // stick to end
+        else if (this.dateRange.from.getTime() == this.targetDateRange.to.getTime()) { // stick to end
             (_f = this.stickToTargetEndFN) === null || _f === void 0 ? void 0 : _f.call(this);
         }
         else {

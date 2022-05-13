@@ -7,3 +7,7 @@ declare type DateYAML = {
     "date"?: string;
 };
 declare type DatesYAML = Array<DateYAML>;
+declare const DefaultDateRange: {
+    from: Date;
+    to: Date;
+};

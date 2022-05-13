@@ -10,7 +10,7 @@ module.exports = class DateRangeApplier {
 
     static applyAllow(topNode: typeof DateRangeNode, dateRangeList: Array<{ from: Date, to: Date }>): typeof DateRangeNode {
         let result = topNode
-        for (let dateRange of dateRangeList) {
+        dateRangeList.forEach((dateRange) => {
             let target = result
             while (!!target) {
                 const targetDateRange = target.dateRange
@@ -50,13 +50,13 @@ module.exports = class DateRangeApplier {
                 target.next = nextNode
                 target = target.next
             }
-        }
+        })
         return result
     }
 
     static applyDeny(topNode: typeof DateRangeNode, dateRangeList: Array<{ from: Date, to: Date }>): typeof DateRangeNode {
         let result = topNode
-        for (let dateRange of dateRangeList) {
+        dateRangeList.forEach((dateRange) => {
             let target = result
             while (!!target) {
                 const targetDateRange = target.dateRange
@@ -81,7 +81,7 @@ module.exports = class DateRangeApplier {
 
                 target = target.next
             }
-        }
+        })
         return result
     }
 }

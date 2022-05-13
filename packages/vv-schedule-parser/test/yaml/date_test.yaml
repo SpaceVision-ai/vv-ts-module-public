@@ -1,0 +1,71 @@
+# 반환 결과는 시간 순서륿 보장한다.
+
+# include test
+# 겹치지 않는 include 정보들은 date range 목록을 반환한다
+- include-dates:
+  - start: "2022-05-01"
+    end: "2022-05-31"
+  - start: "2022-06-20"
+    end: "2022-06-30"
+  - date: "2022-06-03"
+  - date: "2022-06-12"
+
+# 연달은 include는 하나의 이어진 date range를 반환한다 (2022-07-20 ~ 2022-08-20)
+- include-dates:
+  - start: "2022-08-01"
+    end: "2022-08-14"
+  - date: "2022-08-15"
+  - start: "2022-08-16"
+    end: "2022-08-20"
+  - start: "2022-07-20"
+    end: "2022-07-30"
+  - date: "2022-07-31"
+
+# 겹치는 include를 하나로 통합하여 반환한다 ( 2022-09-01 ~ 2022-09-15 )
+- include-dates:
+  - start: "2022-09-08"
+    end: "2022-09-10"
+  - start: "2022-09-06"
+    end: "2022-09-12"
+  - date: "2022-09-07"
+  - start: "2022-09-01"
+    end: "2022-09-09"
+  - start: "2022-09-10"
+    end: "2022-09-15"
+
+# exclude test
+# include가 없는 경우 2000-01-01 부터 3000-12-31 까지의 기간이 include로 설정된다.
+# exclude 구간을 제외하여 기존 include 구간이 나누어진다.
+- exclude-dates: 
+  - start: "2022-05-03"
+    end: "2022-05-13"
+  - date: "2022-06-25"
+
+# include & exclude test
+# exclude로 겹치는 구간만큼 include 구간이 줄어든다
+- include-dates:
+  - start: "2022-05-01"
+    end: "2022-05-31"
+  exclude-dates:
+  - start: "2022-04-25"
+    end: "2022-05-10"
+  - date: "2022-05-31"
+
+#복잡하게 얽힌 구간 test
+- include-dates:
+  - start: "2022-05-01"
+    end: "2022-05-31"
+  - start: "2022-06-10"
+    end: "2022-06-30"
+  - date: "2022-07-05"
+  - date: "2022-07-12"
+  - date: "2022-07-19"
+  exclude-dates:
+  - start: "2022-04-25"
+    end: "2022-05-10"
+  - date: "2022-05-31"
+  - start: "2022-06-15"
+    end: "2022-06-17"
+  - date: "2022-06-23"
+  - start: "2022-07-10"
+    end: "2022-07-16"

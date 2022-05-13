@@ -5,7 +5,10 @@ module.exports = class DateRangeNode implements Iterable<{ from: Date, to: Date 
     dateRange: { from: Date, to: Date }
 
     constructor(dateRange: { from: Date, to: Date }) {
-        this.dateRange = dateRange
+        this.dateRange = {
+            from: new Date(dateRange.from),
+            to: new Date(dateRange.to)
+        }
     }
 
     public get next(): DateRangeNode | undefined {

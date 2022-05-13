@@ -67,9 +67,9 @@ module.exports = class DateRangeCollisionApplier {
             this.startInTargetFN?.()
         } else if (this.dateRange.to > this.targetDateRange.from && this.dateRange.to < this.targetDateRange.to) { // end in target
             this.endInTargetFN?.()
-        } else if (this.dateRange.to == this.targetDateRange.from) { // stick to start
+        } else if (this.dateRange.to.getTime() == this.targetDateRange.from.getTime()) { // stick to start
             this.stickToTargetStartFN?.()
-        } else if (this.dateRange.from == this.targetDateRange.to) { // stick to end
+        } else if (this.dateRange.from.getTime() == this.targetDateRange.to.getTime()) { // stick to end
             this.stickToTargetEndFN?.()
         } else {
             if (this.dateRange.to < this.targetDateRange.from) {

@@ -2,38 +2,29 @@
 var utils = require('./utils');
 var DateRangeNode = require('./dateRange/dateRangeNode');
 var DateRangeApplier = require('./dateRangeApplier');
+const DefaultDateRange = { from: new Date(2000, 0, 1, 0, 0), to: new Date(3000, 11, 31, 24, 0) }; // 2000-01-01 ~ 3000-12-31
 module.exports = class DateParser {
     constructor(includes, excludes) {
         this.includes = this.convertToDateRangeList(includes);
         this.excludes = this.convertToDateRangeList(excludes);
-        this.parseIncludes();
-        this.parseExcludes();
     }
     get dateRangeList() {
+        this.parseIncludes();
+        this.parseExcludes();
         if (!!this.topNode) {
             return Array.from(this.topNode);
         }
         return [];
     }
     calcAvailable(date) {
-        let isAvailable = this.includes.length > 0 ? false : true;
-        for (let include of this.includes) {
-            if (include.from >= date && include.to <= date) {
-                isAvailable = true;
-                break;
-            }
-        }
-        for (let exclude of this.excludes) {
-            if (exclude.from >= date && exclude.to <= date) {
-                isAvailable = false;
-                break;
-            }
-        }
-        return isAvailable;
+        const includesIsEmpty = this.includes.length == 0;
+        const isIncluded = this.includes.some((include) => include.from <= date && include.to >= date);
+        const isExcluded = this.excludes.some((exclude) => exclude.from <= date && exclude.to >= date);
+        return (includesIsEmpty || isIncluded) && !isExcluded;
     }
     parseIncludes() {
         if (this.includes.length == 0) {
-            this.includes.push(utils.defaultDateRangeFrom(new Date()));
+            this.includes.push(DefaultDateRange);
         }
         if (!this.topNode) {
             this.topNode = new DateRangeNode(this.includes[0]);
