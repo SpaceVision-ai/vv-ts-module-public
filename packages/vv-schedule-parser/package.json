@@ -1,6 +1,6 @@
 {
   "name": "@teamdable/vv-schedule-parser",
-  "version": "0.1.2",
+  "version": "0.1.1",
   "description": "parse date & schedule from yaml",
   "author": "teamdable",
   "homepage": "https://github.com/teamdable/vv-ts-module-public#readme",
@@ -14,9 +14,6 @@
   "files": [
     "lib"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/teamdable/vv-ts-module-public.git"
@@ -26,7 +23,12 @@
       "^.+\\.ts$": "ts-jest"
     },
     "testRegex": "\\.spec\\.ts$",
-    "moduleFileExtensions": ["ts", "tsx", "js", "json"]
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ]
   },
   "scripts": {
     "tsc": "tsc",
@@ -39,5 +41,9 @@
     "@types/js-yaml": "^4.0.5",
     "js-yaml": "^4.1.0"
   },
-  "gitHead": "12a4a4e2a9520f6f2ce3955bc473835a7572947e"
+  "gitHead": "12a4a4e2a9520f6f2ce3955bc473835a7572947e",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/",
+    "access": "public"
+  }
 }
