@@ -26,7 +26,12 @@
       "^.+\\.ts$": "ts-jest"
     },
     "testRegex": "\\.spec\\.ts$",
-    "moduleFileExtensions": ["ts", "tsx", "js", "json"]
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ]
   },
   "scripts": {
     "tsc": "tsc",
