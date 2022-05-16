@@ -41,9 +41,5 @@
     "@types/js-yaml": "^4.0.5",
     "js-yaml": "^4.1.0"
   },
-  "gitHead": "12a4a4e2a9520f6f2ce3955bc473835a7572947e",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/",
-    "access": "public"
-  }
+  "gitHead": "12a4a4e2a9520f6f2ce3955bc473835a7572947e"
 }
