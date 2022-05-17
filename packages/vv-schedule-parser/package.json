@@ -1,6 +1,6 @@
 {
   "name": "@teamdable/vv-schedule-parser",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "parse date & schedule from yaml",
   "author": "teamdable",
   "homepage": "https://github.com/teamdable/vv-ts-module-public#readme",
