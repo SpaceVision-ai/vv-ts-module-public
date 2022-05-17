@@ -34,8 +34,8 @@ module.exports = class DateRangeApplier {
                         insertionNode.next = target
                     })
                     .noCollisionBehind(() => {
-                        const insertionNode = new DateRangeNode(dateRange)
                         if (!target.next) {
+                            const insertionNode = new DateRangeNode(dateRange)
                             target.next = insertionNode
                             target = insertionNode
                         }

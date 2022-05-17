@@ -26,7 +26,7 @@ module.exports = class Schedule {
         this.endDate = endDate
         this.startTime = startTime || "00:00"
         this.endTime = endTime || "24:00"
-        this.weekdays = (weekdays && weekdays as Weekday[]) || []
+        this.weekdays = (weekdays && weekdays as Weekday[]) || Array.from(jsDateWeekdays)
     }
 
     public get isAllow(): boolean {
@@ -43,23 +43,9 @@ module.exports = class Schedule {
     }
 
     toRangeList(): Array<{ from: Date, to: Date }> {
-        if (this.weekdays.length > 0) {
-            return this.weekdaysRangeList
-        } else {
-            return this.dateRangeLists
-        }
-    }
-
-    private get dateRangeLists(): Array<{ from: Date, to: Date }> {
-        const from = utils.dateWith(this.startDate, this.startTime)
-        const to = utils.dateWith(this.endDate, this.endTime)
-
-        return [{ from, to }]
-    }
-
-    private get weekdaysRangeList(): Array<{ from: Date, to: Date }> {
         const result: { from: Date, to: Date }[] = []
         const endDateOfDateType = utils.dateWith(this.endDate, this.endTime)
+
         let targetDate = new Date(this.startDate)
         while (targetDate <= endDateOfDateType) {
             let weekdaysIndex = this.weekdays.map((weekday: Weekday) => jsDateWeekdays.indexOf(weekday))
