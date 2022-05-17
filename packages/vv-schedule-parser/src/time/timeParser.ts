@@ -31,7 +31,7 @@ module.exports = class TimeParser {
     }
 
     public calcAvailable(date: Date): boolean {
-        const calcDateIsIn = (schedule: typeof Schedule) => schedule.calcIsIn(date);
+        const calcDateIsIn = (schedule: typeof Schedule) => schedule.calcIsIn(date)
         return this.includes.some(calcDateIsIn) && !this.excludes.some(calcDateIsIn)
     }
 
