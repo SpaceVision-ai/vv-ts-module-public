@@ -8,7 +8,7 @@ module.exports = class Schedule {
         this.endDate = endDate;
         this.startTime = startTime || "00:00";
         this.endTime = endTime || "24:00";
-        this.weekdays = (weekdays && weekdays) || [];
+        this.weekdays = (weekdays && weekdays) || Array.from(jsDateWeekdays);
     }
     get isAllow() {
         return this.inclusion == "allow";
@@ -21,19 +21,6 @@ module.exports = class Schedule {
         return weekdaysIndex.includes(weekdayOfTarget) && date >= scheduleDateFrom && date <= scheduleDateTo;
     }
     toRangeList() {
-        if (this.weekdays.length > 0) {
-            return this.weekdaysRangeList;
-        }
-        else {
-            return this.dateRangeLists;
-        }
-    }
-    get dateRangeLists() {
-        const from = utils.dateWith(this.startDate, this.startTime);
-        const to = utils.dateWith(this.endDate, this.endTime);
-        return [{ from, to }];
-    }
-    get weekdaysRangeList() {
         const result = [];
         const endDateOfDateType = utils.dateWith(this.endDate, this.endTime);
         let targetDate = new Date(this.startDate);
