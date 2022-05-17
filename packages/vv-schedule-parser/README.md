@@ -68,14 +68,8 @@ schedules:
 // constructor
 
 type ScheduleYAML = {
-    "inclusion"?: string,
-    "start-date"?: string,
-    "end-date"?: string,
-    "start-time"?: string,
-    "end-time"?: string,
-    "weekdays"?: [string]
+    TODO: 수정필요
 }
-type SchedulesYAML = Array<ScheduleYAML>
 
 constructor(yamlObject: SchedulesYAML, startDate?: string, endDate?: string)
 ```
