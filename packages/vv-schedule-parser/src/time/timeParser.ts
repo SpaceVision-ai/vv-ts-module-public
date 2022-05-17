@@ -31,9 +31,8 @@ module.exports = class TimeParser {
     }
 
     public calcAvailable(date: Date): boolean {
-        return this.includes.concat(this.excludes)
-            .filter((schedule) => schedule.calcIsIn(date))
-            .reduce((acc, schedule) => schedule.isInclude)
+        const calcDateIsIn = (schedule: typeof Schedule) => schedule.calcIsIn(date);
+        return this.includes.some(calcDateIsIn) && !this.excludes.some(calcDateIsIn)
     }
 
     private convertYamlToSchedule(yamlObject: WeekdayAndTimesYAML, isInclude: boolean): Array<typeof Schedule> {
