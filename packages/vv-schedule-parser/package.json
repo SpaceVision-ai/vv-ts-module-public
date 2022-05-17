@@ -14,10 +14,6 @@
   "files": [
     "lib"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/teamdable/vv-ts-module-public.git"
-  },
   "jest": {
     "transform": {
       "^.+\\.ts$": "ts-jest"
