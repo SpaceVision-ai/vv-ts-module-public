@@ -21,5 +21,8 @@ describe('schedule integration test', () => {
         expect(dateRangeList.length).toBe(16)
         expect(dateRangeList[1].to.getTime()).toBe(utils.dateWith("2022-04-04", "17:00").getTime())
         expect(dateRangeList[15].to.getTime()).toBe(utils.dateWith("2022-04-11", "17:00").getTime())
+        expect(scheduleParser.calcAvailable(new Date('1988-03-05 08:00:00'))).toBe(false);
+        expect(scheduleParser.calcAvailable(new Date('2022-04-04 01:00:00'))).toBe(false);
+        expect(scheduleParser.calcAvailable(new Date('2022-04-01 17:00:00'))).toBe(false);
     })
 })
