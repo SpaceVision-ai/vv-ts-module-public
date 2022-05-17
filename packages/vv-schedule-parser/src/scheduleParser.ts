@@ -26,8 +26,9 @@ module.exports = class ScheduleParser {
     }
 
     public calcAvailable(date: Date): boolean {
+        const givenDate = date.toDateString()
         const dateParser = new DateParser(this.includeDates, this.excludeDates)
-        const timeParser = new TimeParser(this.includeTimes, this.excludeTimes)
+        const timeParser = new TimeParser(this.includeTimes, this.excludeTimes, null, givenDate, givenDate)
         return dateParser.calcAvailable(date) && timeParser.calcAvailable(date)
     }
 }
