@@ -1,50 +1,19 @@
-# 후행 조건은 겹치는 구간에 대해 선행 조건을 override 한다
-
-# allow로 시작한 schedule은 default all deny인 것으로 간주한다
-- schedules:
+- include-dates:
+  - start: "2022-04-01"
+    end: "2022-04-30"
+  exclude-dates:
+  - date: "2022-04-01"
+  - date: "2022-04-02"
+  - date: "2022-04-03"
+  - start: "2022-04-12"
+    end: "2022-04-30"
+  include-times:
   - inclusion: "allow"
-    weekdays: ["mon", "tue", "wed", "thu", "fri"]
     start-time: "09:00"
     end-time: "18:00"
-
-# deny를 통해 시간 구간이 나뉘거나 줄어든다 
-- schedules:
-  - inclusion: "allow"
-    start-time: "09:00"
-    end-time: "18:00"
-  - inclusion: "deny"
-    start-time: "12:00"
+  exclude-times:
+  - start-time: "12:00"
     end-time: "13:00"
-  - inclusion: "deny"
-    weekdays: ["mon"]
+  - weekdays: ["mon"]
     start-time: "17:00"
     end-time: "20:00"
-
-# deny로 시작한 schedule은 default all allow인 것으로 간주한다
-- schedules:
-  - inclusion: "deny"
-    start-time: "12:00"
-    end-time: "13:00"
-  - inclusion: "deny"
-    start-time: "00:00"
-    end-time: "09:00"
-  - inclusion: "deny"
-    start-time: "18:00"
-    end-time: "24:00"
-  - inclusion: "deny"
-    weekdays: ["mon"]
-    start-time: "17:00"
-    end-time: "20:00"
-
-# deny -> allow test
-- schedules:
-  - inclusion: "deny"
-    start-time: "00:00"
-    end-time: "09:00"
-  - inclusion: "deny"
-    start-time: "18:00"
-    end-time: "24:00"
-  - inclusion: "allow"
-    weekdays: ["sat", "sun"]
-    start-time: "19:00"
-    end-time: "21:00"

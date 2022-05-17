@@ -4,6 +4,14 @@ module.exports = {
         return new Date(dateString + ' ' + timeString)
     },
 
+    dateWithHourMin: (date: Date, hour: number, min: number): Date => {
+        date.setHours(hour)
+        date.setMinutes(min)
+        date.setSeconds(0)
+        date.setMilliseconds(0)
+        return date
+    },
+
     formatDateStringWith: (date: Date): string => {
         const month = date.getMonth() + 1
         const day = date.getDate()

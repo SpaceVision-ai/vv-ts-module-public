@@ -1,13 +1,7 @@
-var utils = require('./utils')
-var DateRangeNode = require('./dateRange/dateRangeNode')
-var DateRangeApplier = require('./dateRangeApplier')
+var utils = require('../common/utils')
+var DateRangeNode = require('../common/dateRangeNode')
+var DateRangeApplier = require('../common/dateRangeApplier')
 
-type DateYAML = {
-    "start"?: string,
-    "end"?: string,
-    "date"?: string
-}
-type DatesYAML = Array<DateYAML>
 const DefaultDateRange = { from: new Date(2000, 0, 1, 0, 0), to: new Date(3000, 11, 31, 24, 0)} // 2000-01-01 ~ 3000-12-31
 
 module.exports = class DateParser {
@@ -44,11 +38,11 @@ module.exports = class DateParser {
         if (!this.topNode) {
             this.topNode = new DateRangeNode(this.includes[0])
         }
-        this.topNode = DateRangeApplier.applyAllow(this.topNode, this.includes)
+        this.topNode = DateRangeApplier.applyIncludes(this.topNode, this.includes)
     }
 
     private parseExcludes() {
-        this.topNode = DateRangeApplier.applyDeny(this.topNode, this.excludes)
+        this.topNode = DateRangeApplier.applyExcludes(this.topNode, this.excludes)
     }
 
     private convertToDateRangeList(yaml: DatesYAML): Array<{ from: Date, to: Date }> {

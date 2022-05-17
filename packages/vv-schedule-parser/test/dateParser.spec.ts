@@ -1,8 +1,8 @@
 var fs = require('fs')
 var yaml = require('js-yaml')
 
-var {ScheduleParser, DateParser} = require('../src/parser');
-var utils = require('../src/utils')
+var { DateParser } = require('../src/index');
+var utils = require('../src/common/utils')
 
 
 describe('simple_test.yaml', () => {

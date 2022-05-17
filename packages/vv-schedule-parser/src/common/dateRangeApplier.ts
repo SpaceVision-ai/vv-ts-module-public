@@ -1,21 +1,21 @@
-var DateRangeNode = require('./dateRange/dateRangeNode')
-var DateRangeCollisionApplier = require('./dateRange/dateRangeCollisionApplier')
+var DateRangeNode = require('./dateRangeNode')
+var DateRangeCollisionExecutor = require('./dateRangeCollisionExecutor')
 
 module.exports = class DateRangeApplier {
 
-    static apply(allow: boolean, topNode: typeof DateRangeNode,
+    static apply(isInclude: boolean, topNode: typeof DateRangeNode,
         dateRangeList: Array<{ from: Date, to: Date }>): typeof DateRangeNode {
-        return allow ? this.applyAllow(topNode, dateRangeList) : this.applyDeny(topNode, dateRangeList)
+        return isInclude ? this.applyIncludes(topNode, dateRangeList) : this.applyExcludes(topNode, dateRangeList)
     }
 
-    static applyAllow(topNode: typeof DateRangeNode, dateRangeList: Array<{ from: Date, to: Date }>): typeof DateRangeNode {
+    static applyIncludes(topNode: typeof DateRangeNode, dateRangeList: Array<{ from: Date, to: Date }>): typeof DateRangeNode {
         let result = topNode
         dateRangeList.forEach((dateRange) => {
             let target = result
             while (!!target) {
                 const targetDateRange = target.dateRange
 
-                new DateRangeCollisionApplier(dateRange, targetDateRange)
+                new DateRangeCollisionExecutor(dateRange, targetDateRange)
                     .startInTarget(() => targetDateRange.to = dateRange.to)
                     .endInTarget(() => targetDateRange.from = dateRange.from)
                     .stickToTargetStart(() => targetDateRange.from = dateRange.from)
@@ -40,7 +40,7 @@ module.exports = class DateRangeApplier {
                             target = insertionNode
                         }
                     })
-                    .apply()
+                    .execute()
 
                 let nextNode = target.next
                 while (!!nextNode && nextNode.dateRange.from <= targetDateRange.to) {
@@ -54,14 +54,14 @@ module.exports = class DateRangeApplier {
         return result
     }
 
-    static applyDeny(topNode: typeof DateRangeNode, dateRangeList: Array<{ from: Date, to: Date }>): typeof DateRangeNode {
+    static applyExcludes(topNode: typeof DateRangeNode, dateRangeList: Array<{ from: Date, to: Date }>): typeof DateRangeNode {
         let result = topNode
         dateRangeList.forEach((dateRange) => {
             let target = result
             while (!!target) {
                 const targetDateRange = target.dateRange
 
-                new DateRangeCollisionApplier(dateRange, targetDateRange)
+                new DateRangeCollisionExecutor(dateRange, targetDateRange)
                     .insideTarget(() => {
                         const insertionNode = new DateRangeNode({ from: new Date(dateRange.from), to: new Date(targetDateRange.to) })
                         targetDateRange.to = dateRange.from
@@ -77,7 +77,7 @@ module.exports = class DateRangeApplier {
                             result = target?.next
                         }
                     })
-                    .apply()
+                    .execute()
 
                 target = target.next
             }

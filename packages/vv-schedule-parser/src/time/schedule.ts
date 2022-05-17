@@ -1,26 +1,25 @@
-var utils = require('./utils')
+var utils = require('../common/utils')
 
-type Inclusion = "allow" | "deny"
 type Weekday = "mon" | "tue" | "wed" | "thu" | "fri" | "sat" | "sun"
 const jsDateWeekdays: Weekday[] = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
 
 module.exports = class Schedule {
 
-    readonly inclusion: Inclusion
-    private startDate: string
-    private endDate: string
+    readonly isInclude: boolean
+    private startDate: Date
+    private endDate: Date
     private startTime: string
     private endTime: string
     private weekdays: Weekday[]
 
     constructor(
-        inclusion: string,
-        startDate: string,
-        endDate: string,
+        isInclude: boolean,
+        startDate: Date,
+        endDate: Date,
         startTime?: string,
         endTime?: string,
         weekdays?: string[]) {
-        this.inclusion = inclusion as Inclusion
+        this.isInclude = isInclude
 
         this.startDate = startDate
         this.endDate = endDate
@@ -29,25 +28,26 @@ module.exports = class Schedule {
         this.weekdays = (weekdays && weekdays as Weekday[]) || Array.from(jsDateWeekdays)
     }
 
-    public get isAllow(): boolean {
-        return this.inclusion == "allow"
-    }
-
     public calcIsIn(date: Date): boolean {
-        const scheduleDateFrom = utils.dateWith(this.startDate, this.startTime)
-        const scheduleDateTo = utils.dateWith(this.endDate, this.endTime)
-        let weekdaysIndex = this.weekdays.map((weekday: Weekday) => jsDateWeekdays.indexOf(weekday))
-        let weekdayOfTarget = date.getDay()
+        const timeFrom = Number(this.startTime.split(":")[0]) * 60 + Number(this.startTime.split(":")[1])
+        const timeTo = Number(this.endTime.split(":")[0]) * 60 + Number(this.endTime.split(":")[1])
+        const weekdaysIndex = this.weekdays.map((weekday: Weekday) => jsDateWeekdays.indexOf(weekday))
 
-        return weekdaysIndex.includes(weekdayOfTarget) && date >= scheduleDateFrom && date <= scheduleDateTo
+        const weekdayOfTarget = date.getDay()
+        const time = date.getHours() * 60 + date.getMinutes()
+
+        const isInWeek = weekdaysIndex.includes(weekdayOfTarget)
+        const isInDate = this.startDate <= date && this.endDate >= date
+        const isInTime = timeFrom <= time && timeTo >= time
+
+        return isInWeek && isInDate && isInTime
     }
 
     toRangeList(): Array<{ from: Date, to: Date }> {
         const result: { from: Date, to: Date }[] = []
-        const endDateOfDateType = utils.dateWith(this.endDate, this.endTime)
 
         let targetDate = new Date(this.startDate)
-        while (targetDate <= endDateOfDateType) {
+        while (targetDate < this.endDate) {
             let weekdaysIndex = this.weekdays.map((weekday: Weekday) => jsDateWeekdays.indexOf(weekday))
             let weekdayOfTarget = targetDate.getDay()
 

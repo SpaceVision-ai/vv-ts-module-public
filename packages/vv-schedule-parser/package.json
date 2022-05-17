@@ -5,8 +5,8 @@
   "author": "teamdable",
   "homepage": "https://github.com/teamdable/vv-ts-module-public#readme",
   "license": "ISC",
-  "main": "lib/parser.js",
-  "typings": "lib/parser.d.ts",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "test"

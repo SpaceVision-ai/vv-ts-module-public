@@ -58,7 +58,7 @@ module.exports = class DateRangeCollisionApplier {
         return this
     }
 
-    public apply(): boolean {
+    public execute(): boolean {
         if (this.dateRange.from > this.targetDateRange.from && this.dateRange.to < this.targetDateRange.to) { // inside
             this.insideTargetFN?.()
         } else if (this.dateRange.from <= this.targetDateRange.from && this.dateRange.to >= this.targetDateRange.to) { // cover
