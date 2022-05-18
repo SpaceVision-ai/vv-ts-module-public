@@ -1,4 +1,4 @@
-module.exports = class DateRangeCollisionExecutor {
+export class DateRangeCollisionExecutor {
 
     private dateRange: { from: Date, to: Date }
     private targetDateRange: { from: Date, to: Date }

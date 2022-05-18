@@ -1,12 +1,12 @@
-var utils = require('../common/utils')
-var DateRangeNode = require('../common/dateRangeNode')
-var DateRangeApplier = require('../common/dateRangeApplier')
+import * as utils from '../common/utils'
+import { DateRangeNode } from '../common/dateRangeNode'
+import { DateRangeApplier} from '../common/dateRangeApplier'
 
 const DefaultDateRange = { from: new Date(2000, 0, 1, 0, 0), to: new Date(3000, 11, 31, 24, 0)} // 2000-01-01 ~ 3000-12-31
 
-module.exports = class DateParser {
+export class DateParser {
 
-    private topNode?: typeof DateRangeNode
+    private topNode?: DateRangeNode
     private includes: Array<{ from: Date, to: Date }>
     private excludes: Array<{ from: Date, to: Date }>
 

@@ -1,8 +1,7 @@
-var TimeParser = require('./time/timeParser')
-var DateParser = require('./date/dateParser')
-var utils = require('./common/utils')
+import { TimeParser } from './time/timeParser'
+import { DateParser } from './date/dateParser'
 
-module.exports = class ScheduleParser {
+export class ScheduleParser {
 
     private includeDates: DatesYAML
     private excludeDates: DatesYAML
