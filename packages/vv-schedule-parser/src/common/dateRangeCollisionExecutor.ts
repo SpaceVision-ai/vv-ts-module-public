@@ -1,4 +1,4 @@
-module.exports = class DateRangeCollisionApplier {
+module.exports = class DateRangeCollisionExecutor {
 
     private dateRange: { from: Date, to: Date }
     private targetDateRange: { from: Date, to: Date }
@@ -18,42 +18,42 @@ module.exports = class DateRangeCollisionApplier {
         this.targetDateRange = targetDateRange
     }
 
-    public insideTarget(fn: () => void): DateRangeCollisionApplier {
+    public insideTarget(fn: () => void): DateRangeCollisionExecutor {
         this.insideTargetFN = fn
         return this
     }
 
-    public startInTarget(fn: () => void): DateRangeCollisionApplier {
+    public startInTarget(fn: () => void): DateRangeCollisionExecutor {
         this.startInTargetFN = fn
         return this
     }
 
-    public endInTarget(fn: () => void): DateRangeCollisionApplier {
+    public endInTarget(fn: () => void): DateRangeCollisionExecutor {
         this.endInTargetFN = fn
         return this
     }
 
-    public coverTarget(fn: () => void): DateRangeCollisionApplier {
+    public coverTarget(fn: () => void): DateRangeCollisionExecutor {
         this.coverTargetFN = fn
         return this
     }
 
-    public stickToTargetStart(fn: () => void): DateRangeCollisionApplier {
+    public stickToTargetStart(fn: () => void): DateRangeCollisionExecutor {
         this.stickToTargetEndFN = fn
         return this
     }
 
-    public stickToTargetEnd(fn: () => void): DateRangeCollisionApplier {
+    public stickToTargetEnd(fn: () => void): DateRangeCollisionExecutor {
         this.stickToTargetEndFN = fn
         return this
     }
 
-    public noCollisionAhead(fn: () => void): DateRangeCollisionApplier {
+    public noCollisionAhead(fn: () => void): DateRangeCollisionExecutor {
         this.noCollisionAheadFN = fn
         return this
     }
 
-    public noCollisionBehind(fn: () => void): DateRangeCollisionApplier {
+    public noCollisionBehind(fn: () => void): DateRangeCollisionExecutor {
         this.noCollisionBehindFN = fn
         return this
     }
