@@ -1,9 +1,3 @@
-var TimeParser = require('./time/timeParser')
-var DateParser = require('./date/dateParser')
-var ScheduleParser = require('./scheduleParser')
-
-module.exports = {
-    TimeParser,
-    DateParser,
-    ScheduleParser
-}
+export {TimeParser} from './time/timeParser'
+export {DateParser} from './date/dateParser'
+export {ScheduleParser} from './scheduleParser'

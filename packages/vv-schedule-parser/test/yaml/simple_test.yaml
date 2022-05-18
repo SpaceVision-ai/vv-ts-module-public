@@ -10,19 +10,15 @@ exclude-dates:
     end: "2022-05-13"
   - date: "2022-06-25"
 schedules:
-  - inclusion: "allow"
-    weekdays: ["mon", "tue", "wed", "thu", "fri"]
+  - weekdays: ["mon", "tue", "wed", "thu", "fri"]
     start-time: "09:00"
     end-time: "18:00"
-  - inclusion: "deny"
-    weekdays: ["sat"]
+  - weekdays: ["sat"]
     start-time: "14:00"
     end-time: "22:00"
-  - inclusion: "deny"
-    start-date: "2022-04-01"
+  - start-date: "2022-04-01"
     end-date: "2022-04-15"
     weekdays: ["sat", "sun"]
-  - inclusion: "allow"
-    weekdays: ["sat"]
+  - weekdays: ["sat"]
     start-time: "14:00"
     end-time: "24:00"

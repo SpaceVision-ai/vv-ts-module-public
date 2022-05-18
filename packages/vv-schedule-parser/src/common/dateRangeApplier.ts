@@ -1,14 +1,16 @@
-var DateRangeNode = require('./dateRangeNode')
-var DateRangeCollisionExecutor = require('./dateRangeCollisionExecutor')
+import {DateRangeNode} from './dateRangeNode'
+import {DateRangeCollisionExecutor} from './dateRangeCollisionExecutor'
 
-module.exports = class DateRangeApplier {
+export class DateRangeApplier {
 
-    static apply(isInclude: boolean, topNode: typeof DateRangeNode,
-        dateRangeList: Array<{ from: Date, to: Date }>): typeof DateRangeNode {
+    static apply(
+        isInclude: boolean, topNode: DateRangeNode,
+        dateRangeList: Array<{ from: Date, to: Date }>
+    ): DateRangeNode {
         return isInclude ? this.applyIncludes(topNode, dateRangeList) : this.applyExcludes(topNode, dateRangeList)
     }
 
-    static applyIncludes(topNode: typeof DateRangeNode, dateRangeList: Array<{ from: Date, to: Date }>): typeof DateRangeNode {
+    static applyIncludes(topNode: DateRangeNode, dateRangeList: Array<{ from: Date, to: Date }>): DateRangeNode {
         let result = topNode
         dateRangeList.forEach((dateRange) => {
             let target = result
@@ -54,7 +56,7 @@ module.exports = class DateRangeApplier {
         return result
     }
 
-    static applyExcludes(topNode: typeof DateRangeNode, dateRangeList: Array<{ from: Date, to: Date }>): typeof DateRangeNode {
+    static applyExcludes(topNode: DateRangeNode, dateRangeList: Array<{ from: Date, to: Date }>): DateRangeNode {
         let result = topNode
         dateRangeList.forEach((dateRange) => {
             let target = result

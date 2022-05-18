@@ -1,9 +1,9 @@
-var utils = require('../common/utils')
+import * as utils from '../common/utils'
 
 type Weekday = "mon" | "tue" | "wed" | "thu" | "fri" | "sat" | "sun"
 const jsDateWeekdays: Weekday[] = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
 
-module.exports = class Schedule {
+export class Schedule {
 
     readonly isInclude: boolean
     private startDate: Date

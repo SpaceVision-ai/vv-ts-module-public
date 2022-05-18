@@ -1,21 +1,25 @@
-var Schedule = require('./schedule')
-var utils = require('../common/utils')
-var DateRangeNode = require('../common/dateRangeNode')
-var DateRangeApplier = require('../common/dateRangeApplier')
+import {Schedule} from './schedule'
+import * as utils from '../common/utils'
+import {DateRangeNode} from '../common/dateRangeNode'
+import {DateRangeApplier} from '../common/dateRangeApplier'
 
 
-module.exports = class TimeParser {
+export class TimeParser {
 
     private startDate: Date
     private endDate: Date
 
-    private includes: Array<typeof Schedule>
-    private excludes: Array<typeof Schedule>
-    private topNode?: typeof DateRangeNode
+    private includes: Schedule[]
+    private excludes: Schedule[]
+    private topNode?: DateRangeNode
 
-    constructor(includes?: WeekdayAndTimesYAML, excludes?: WeekdayAndTimesYAML,
+    constructor(
+        includes?: WeekdayAndTimesYAML, 
+        excludes?: WeekdayAndTimesYAML,
         dateRange?: { from: Date, to: Date },
-        startDate?: string, endDate?: string) {
+        startDate?: string, 
+        endDate?: string
+    ) {
         this.startDate = dateRange?.from || (startDate && utils.dateWith(startDate, "00:00")) || utils.dateWithHourMin(new Date, 0, 0)
         this.endDate = dateRange?.to || (endDate && utils.dateWith(endDate, "24:00")) || utils.dateWithHourMin(new Date, 24, 0)
         this.includes = this.convertYamlToSchedule(includes || [], true)
@@ -31,12 +35,11 @@ module.exports = class TimeParser {
     }
 
     public calcAvailable(date: Date): boolean {
-        return this.includes.concat(this.excludes)
-            .filter((schedule) => schedule.calcIsIn(date))
-            .reduce((acc, schedule) => schedule.isInclude)
+        const calcDateIsIn = (schedule: Schedule): boolean => schedule.calcIsIn(date)
+        return this.includes.some(calcDateIsIn) && !this.excludes.some(calcDateIsIn)
     }
 
-    private convertYamlToSchedule(yamlObject: WeekdayAndTimesYAML, isInclude: boolean): Array<typeof Schedule> {
+    private convertYamlToSchedule(yamlObject: WeekdayAndTimesYAML, isInclude: boolean): Schedule[] {
         return yamlObject.map((yaml: any) => {
             return new Schedule(
                 isInclude,

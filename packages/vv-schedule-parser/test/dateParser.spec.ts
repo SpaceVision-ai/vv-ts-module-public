@@ -1,7 +1,7 @@
 var fs = require('fs')
 var yaml = require('js-yaml')
 
-var { DateParser } = require('../src/index');
+var { DateParser } = require('../src/index')
 var utils = require('../src/common/utils')
 
 

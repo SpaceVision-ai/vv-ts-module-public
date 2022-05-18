@@ -1,4 +1,4 @@
-module.exports = class DateRangeNode implements Iterable<{ from: Date, to: Date }> {
+export class DateRangeNode implements Iterable<{ from: Date, to: Date }> {
 
     private _prev?: DateRangeNode
     private _next?: DateRangeNode

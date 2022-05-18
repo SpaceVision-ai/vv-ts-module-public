@@ -1,8 +1,7 @@
-var TimeParser = require('./time/timeParser')
-var DateParser = require('./date/dateParser')
-var utils = require('./common/utils')
+import { TimeParser } from './time/timeParser'
+import { DateParser } from './date/dateParser'
 
-module.exports = class ScheduleParser {
+export class ScheduleParser {
 
     private includeDates: DatesYAML
     private excludeDates: DatesYAML
@@ -26,8 +25,9 @@ module.exports = class ScheduleParser {
     }
 
     public calcAvailable(date: Date): boolean {
+        const givenDate = date.toDateString()
         const dateParser = new DateParser(this.includeDates, this.excludeDates)
-        const timeParser = new TimeParser(this.includeTimes, this.excludeTimes)
+        const timeParser = new TimeParser(this.includeTimes, this.excludeTimes, null, givenDate, givenDate)
         return dateParser.calcAvailable(date) && timeParser.calcAvailable(date)
     }
 }

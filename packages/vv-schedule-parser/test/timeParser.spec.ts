@@ -1,7 +1,7 @@
 var fs = require('fs')
 var yaml = require('js-yaml')
 
-var { TimeParser } = require('../src/index');
+var { TimeParser } = require('../src/index')
 var utils = require('../src/common/utils')
 
 describe('include-times and exclude-times test', () => {
