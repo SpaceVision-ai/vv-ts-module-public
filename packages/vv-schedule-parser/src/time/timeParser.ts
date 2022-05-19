@@ -16,8 +16,8 @@ export class TimeParser {
     constructor(
         includes?: WeekdayAndTimesYAML, 
         excludes?: WeekdayAndTimesYAML,
-        dateRange?: { from: Date, to: Date },
-        startDate?: string, 
+        dateRange?: { from: Date, to: Date } | null,
+        startDate?: string,
         endDate?: string
     ) {
         this.startDate = dateRange?.from || (startDate && utils.dateWith(startDate, "00:00")) || utils.dateWithHourMin(new Date, 0, 0)

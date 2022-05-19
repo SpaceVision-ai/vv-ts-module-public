@@ -42,7 +42,9 @@ export class DateParser {
     }
 
     private parseExcludes() {
-        this.topNode = DateRangeApplier.applyExcludes(this.topNode, this.excludes)
+        if (!!this.topNode) {
+            this.topNode = DateRangeApplier.applyExcludes(this.topNode, this.excludes)
+        }
     }
 
     private convertToDateRangeList(yaml: DatesYAML): Array<{ from: Date, to: Date }> {

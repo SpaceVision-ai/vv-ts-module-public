@@ -6,14 +6,14 @@ export class DateRangeApplier {
     static apply(
         isInclude: boolean, topNode: DateRangeNode,
         dateRangeList: Array<{ from: Date, to: Date }>
-    ): DateRangeNode {
+    ): DateRangeNode | undefined {
         return isInclude ? this.applyIncludes(topNode, dateRangeList) : this.applyExcludes(topNode, dateRangeList)
     }
 
     static applyIncludes(topNode: DateRangeNode, dateRangeList: Array<{ from: Date, to: Date }>): DateRangeNode {
         let result = topNode
         dateRangeList.forEach((dateRange) => {
-            let target = result
+            let target: DateRangeNode | undefined = result
             while (!!target) {
                 const targetDateRange = target.dateRange
 
@@ -28,23 +28,23 @@ export class DateRangeApplier {
                     })
                     .noCollisionAhead(() => {
                         const insertionNode = new DateRangeNode(dateRange)
-                        if (!target.prev) {
+                        if (!target!.prev) {
                             result = insertionNode
                         } else {
-                            target.prev.next = insertionNode
+                            target!.prev.next = insertionNode
                         }
                         insertionNode.next = target
                     })
                     .noCollisionBehind(() => {
-                        if (!target.next) {
+                        if (!target!.next) {
                             const insertionNode = new DateRangeNode(dateRange)
-                            target.next = insertionNode
+                            target!.next = insertionNode
                             target = insertionNode
                         }
                     })
                     .execute()
 
-                let nextNode = target.next
+                let nextNode: DateRangeNode | undefined = target.next
                 while (!!nextNode && nextNode.dateRange.from <= targetDateRange.to) {
                     targetDateRange.to = targetDateRange.to > nextNode.dateRange.to ? targetDateRange.to : nextNode.dateRange.to
                     nextNode = nextNode.next
@@ -56,8 +56,8 @@ export class DateRangeApplier {
         return result
     }
 
-    static applyExcludes(topNode: DateRangeNode, dateRangeList: Array<{ from: Date, to: Date }>): DateRangeNode {
-        let result = topNode
+    static applyExcludes(topNode: DateRangeNode, dateRangeList: Array<{ from: Date, to: Date }>): DateRangeNode | undefined {
+        let result: DateRangeNode | undefined = topNode
         dateRangeList.forEach((dateRange) => {
             let target = result
             while (!!target) {
@@ -73,8 +73,8 @@ export class DateRangeApplier {
                     .startInTarget(() => targetDateRange.to = dateRange.from)
                     .endInTarget(() => targetDateRange.from = dateRange.to)
                     .coverTarget(() => {
-                        if (!!target.prev) {
-                            target.prev.next = target?.next
+                        if (!!target!.prev) {
+                            target!.prev.next = target?.next
                         } else {
                             result = target?.next
                         }
