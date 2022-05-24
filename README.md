@@ -4,7 +4,7 @@ VV팀에서 사용하는 typescript public node 모듈 저장소
 
 # lerna
 * mono repo multi package 관리 도구 [링크](https://github.com/lerna/lerna)
-* github registry에 배포한다 (https://npm.pkg.github.com)
+* npmjs registry에 배포한다 (https://www.npmjs.com/package/vv-schedule-parser)
 
 ## 기본 세팅
 * root의 package.json에 작성된 dependencies는 모든 패키지에서 공통으로 사용된다
@@ -13,12 +13,6 @@ VV팀에서 사용하는 typescript public node 모듈 저장소
 ```
 $ npm install -g lerna
 $ lerna bootstrap --hoist
-```
-* ~/.npmrc 파일에 @teamdable registry 주소를 등록한다
-```
-.npmrc
-
-@teamdable:registry=https://npm.pkg.github.com/
 ```
 
 ## 기존 package 신규 버전 publish
