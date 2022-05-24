@@ -1,5 +1,5 @@
 {
-  "name": "@teamdable/vv-schedule-parser",
+  "name": "vv-schedule-parser",
   "version": "0.1.8",
   "description": "parse date & schedule from yaml",
   "author": "teamdable",
@@ -37,5 +37,5 @@
     "@types/js-yaml": "^4.0.5",
     "js-yaml": "^4.1.0"
   },
-  "gitHead": "12a4a4e2a9520f6f2ce3955bc473835a7572947e"
+  "gitHead": "ad487e8353bee7484bb5ed5d2962988ec4e9c1bd"
 }
