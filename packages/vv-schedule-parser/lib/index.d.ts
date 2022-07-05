@@ -1,3 +1,3 @@
-declare var TimeParser: any;
-declare var DateParser: any;
-declare var ScheduleParser: any;
+export { TimeParser } from './time/timeParser';
+export { DateParser } from './date/dateParser';
+export { ScheduleParser } from './scheduleParser';

@@ -1,6 +1,6 @@
 # `schedule-parser`
 ## 구성
-{ DateParser, TimeParser, ScheduleParser}
+{ DateParser, TimeParser, ScheduleParser }
 ### DateParser
 include-dates 와 exclude-dates로 구성된 날짜 정보에 따라 동작 가능한 Date type의 구간 목록(Array<{from: Date, to: Date}>)을 반환하거나 주입받은 Date의 가능 여부를 계산한다
 ```

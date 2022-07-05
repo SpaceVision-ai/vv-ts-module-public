@@ -1,5 +1,7 @@
 "use strict";
-module.exports = class DateRangeNode {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DateRangeNode = void 0;
+class DateRangeNode {
     constructor(dateRange) {
         this.dateRange = {
             from: new Date(dateRange.from),
@@ -37,4 +39,5 @@ module.exports = class DateRangeNode {
             }
         };
     }
-};
+}
+exports.DateRangeNode = DateRangeNode;

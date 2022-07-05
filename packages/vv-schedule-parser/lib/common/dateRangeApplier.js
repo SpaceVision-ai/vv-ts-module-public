@@ -1,7 +1,9 @@
 "use strict";
-var DateRangeNode = require('./dateRangeNode');
-var DateRangeCollisionExecutor = require('./dateRangeCollisionExecutor');
-module.exports = class DateRangeApplier {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DateRangeApplier = void 0;
+const dateRangeNode_1 = require("./dateRangeNode");
+const dateRangeCollisionExecutor_1 = require("./dateRangeCollisionExecutor");
+class DateRangeApplier {
     static apply(isInclude, topNode, dateRangeList) {
         return isInclude ? this.applyIncludes(topNode, dateRangeList) : this.applyExcludes(topNode, dateRangeList);
     }
@@ -11,7 +13,7 @@ module.exports = class DateRangeApplier {
             let target = result;
             while (!!target) {
                 const targetDateRange = target.dateRange;
-                new DateRangeCollisionExecutor(dateRange, targetDateRange)
+                new dateRangeCollisionExecutor_1.DateRangeCollisionExecutor(dateRange, targetDateRange)
                     .startInTarget(() => targetDateRange.to = dateRange.to)
                     .endInTarget(() => targetDateRange.from = dateRange.from)
                     .stickToTargetStart(() => targetDateRange.from = dateRange.from)
@@ -21,7 +23,7 @@ module.exports = class DateRangeApplier {
                     targetDateRange.to = dateRange.to;
                 })
                     .noCollisionAhead(() => {
-                    const insertionNode = new DateRangeNode(dateRange);
+                    const insertionNode = new dateRangeNode_1.DateRangeNode(dateRange);
                     if (!target.prev) {
                         result = insertionNode;
                     }
@@ -32,7 +34,7 @@ module.exports = class DateRangeApplier {
                 })
                     .noCollisionBehind(() => {
                     if (!target.next) {
-                        const insertionNode = new DateRangeNode(dateRange);
+                        const insertionNode = new dateRangeNode_1.DateRangeNode(dateRange);
                         target.next = insertionNode;
                         target = insertionNode;
                     }
@@ -55,9 +57,9 @@ module.exports = class DateRangeApplier {
             let target = result;
             while (!!target) {
                 const targetDateRange = target.dateRange;
-                new DateRangeCollisionExecutor(dateRange, targetDateRange)
+                new dateRangeCollisionExecutor_1.DateRangeCollisionExecutor(dateRange, targetDateRange)
                     .insideTarget(() => {
-                    const insertionNode = new DateRangeNode({ from: new Date(dateRange.from), to: new Date(targetDateRange.to) });
+                    const insertionNode = new dateRangeNode_1.DateRangeNode({ from: new Date(dateRange.from), to: new Date(targetDateRange.to) });
                     targetDateRange.to = dateRange.from;
                     insertionNode.next = target.next;
                     target.next = insertionNode;
@@ -78,4 +80,5 @@ module.exports = class DateRangeApplier {
         });
         return result;
     }
-};
+}
+exports.DateRangeApplier = DateRangeApplier;

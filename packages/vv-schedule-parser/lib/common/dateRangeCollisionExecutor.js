@@ -1,5 +1,7 @@
 "use strict";
-module.exports = class DateRangeCollisionApplier {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DateRangeCollisionExecutor = void 0;
+class DateRangeCollisionExecutor {
     constructor(dateRange, targetDateRange) {
         this.dateRange = dateRange;
         this.targetDateRange = targetDateRange;
@@ -67,4 +69,5 @@ module.exports = class DateRangeCollisionApplier {
         }
         return true;
     }
-};
+}
+exports.DateRangeCollisionExecutor = DateRangeCollisionExecutor;

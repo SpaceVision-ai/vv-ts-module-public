@@ -9,16 +9,3 @@ exclude-dates:
   - start: "2022-05-03"
     end: "2022-05-13"
   - date: "2022-06-25"
-schedules:
-  - weekdays: ["mon", "tue", "wed", "thu", "fri"]
-    start-time: "09:00"
-    end-time: "18:00"
-  - weekdays: ["sat"]
-    start-time: "14:00"
-    end-time: "22:00"
-  - start-date: "2022-04-01"
-    end-date: "2022-04-15"
-    weekdays: ["sat", "sun"]
-  - weekdays: ["sat"]
-    start-time: "14:00"
-    end-time: "24:00"
