@@ -2,6 +2,7 @@ import {Schedule} from './schedule'
 import * as utils from '../common/utils'
 import {DateRangeNode} from '../common/dateRangeNode'
 import {DateRangeApplier} from '../common/dateRangeApplier'
+import type {WeekdayAndTimesYAML} from '../type'
 
 
 export class TimeParser {

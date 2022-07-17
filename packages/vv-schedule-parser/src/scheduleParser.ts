@@ -1,5 +1,6 @@
 import { TimeParser } from './time/timeParser'
 import { DateParser } from './date/dateParser'
+import type {DatesYAML, WeekdayAndTimesYAML} from './type'
 
 export class ScheduleParser {
 
