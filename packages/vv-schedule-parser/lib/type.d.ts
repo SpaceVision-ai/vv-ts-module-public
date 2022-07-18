@@ -1,12 +1,14 @@
-declare type DateYAML = {
-    "start"?: string;
-    "end"?: string;
-    "date"?: string;
+export declare type DateYAML = {
+    start?: string;
+    end?: string;
+    date?: string;
 };
-declare type DatesYAML = Array<DateYAML>;
-declare type WeekdayAndTimeYAML = {
+export declare type DatesYAML = Array<DateYAML>;
+export declare type WeekdayAndTimeYAML = {
     "start-time"?: string;
     "end-time"?: string;
-    "weekdays"?: [string];
+    startTime?: string;
+    endTime?: string;
+    weekdays?: [string];
 };
-declare type WeekdayAndTimesYAML = Array<WeekdayAndTimeYAML>;
+export declare type WeekdayAndTimesYAML = Array<WeekdayAndTimeYAML>;

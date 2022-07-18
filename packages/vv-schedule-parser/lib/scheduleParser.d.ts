@@ -1,3 +1,4 @@
+import type { DatesYAML, WeekdayAndTimesYAML } from './type';
 export declare class ScheduleParser {
     private includeDates;
     private excludeDates;

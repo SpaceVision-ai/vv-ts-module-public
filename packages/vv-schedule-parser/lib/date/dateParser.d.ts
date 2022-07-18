@@ -1,3 +1,4 @@
+import type { DatesYAML } from '../type';
 export declare class DateParser {
     private topNode?;
     private includes;

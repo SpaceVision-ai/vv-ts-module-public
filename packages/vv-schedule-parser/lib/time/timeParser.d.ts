@@ -1,3 +1,4 @@
+import type { WeekdayAndTimesYAML } from '../type';
 export declare class TimeParser {
     private startDate;
     private endDate;
