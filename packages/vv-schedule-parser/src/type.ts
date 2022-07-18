@@ -1,13 +1,13 @@
-type DateYAML = {
+export type DateYAML = {
     "start"?: string,
     "end"?: string,
     "date"?: string
 }
-type DatesYAML = Array<DateYAML>
+export type DatesYAML = Array<DateYAML>
 
-type WeekdayAndTimeYAML = {
+export type WeekdayAndTimeYAML = {
     "start-time"?: string,
     "end-time"?: string,
     "weekdays"?: [string]
 }
-type WeekdayAndTimesYAML = Array<WeekdayAndTimeYAML>
+export type WeekdayAndTimesYAML = Array<WeekdayAndTimeYAML>
