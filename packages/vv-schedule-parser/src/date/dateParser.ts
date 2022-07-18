@@ -26,10 +26,10 @@ export class DateParser {
     }
 
     public calcAvailable(date: Date): boolean {
-        const includesIsEmpty = this.includes.length == 0
+        const isEmptyIncludes = this.includes.length == 0
         const isIncluded = this.includes.some((include) => include.from <= date && include.to >= date)
         const isExcluded = this.excludes.some((exclude) => exclude.from <= date && exclude.to >= date)
-        return (includesIsEmpty || isIncluded) && !isExcluded
+        return (isEmptyIncludes || isIncluded) && !isExcluded
     }
 
     private parseIncludes() {

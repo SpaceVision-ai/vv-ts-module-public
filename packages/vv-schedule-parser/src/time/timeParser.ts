@@ -37,7 +37,10 @@ export class TimeParser {
 
     public calcAvailable(date: Date): boolean {
         const calcDateIsIn = (schedule: Schedule): boolean => schedule.calcIsIn(date)
-        return this.includes.some(calcDateIsIn) && !this.excludes.some(calcDateIsIn)
+        const isEmptyIncludes = this.includes.length == 0;
+        const isIncluded = this.includes.some(calcDateIsIn);
+        const isExcluded = this.excludes.some(calcDateIsIn);
+        return (isEmptyIncludes || isIncluded) && !isExcluded
     }
 
     private convertYamlToSchedule(yamlObject: WeekdayAndTimesYAML, isInclude: boolean): Schedule[] {

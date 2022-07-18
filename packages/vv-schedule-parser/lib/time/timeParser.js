@@ -44,7 +44,10 @@ class TimeParser {
     }
     calcAvailable(date) {
         const calcDateIsIn = (schedule) => schedule.calcIsIn(date);
-        return this.includes.some(calcDateIsIn) && !this.excludes.some(calcDateIsIn);
+        const isEmptyIncludes = this.includes.length == 0;
+        const isIncluded = this.includes.some(calcDateIsIn);
+        const isExcluded = this.excludes.some(calcDateIsIn);
+        return (isEmptyIncludes || isIncluded) && !isExcluded;
     }
     convertYamlToSchedule(yamlObject, isInclude) {
         return yamlObject.map((yaml) => {
