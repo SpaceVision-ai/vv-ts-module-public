@@ -46,9 +46,9 @@ export class TimeParser {
                 isInclude,
                 this.startDate,
                 this.endDate,
-                yaml["start-time"],
-                yaml["end-time"],
-                yaml["weekdays"]
+                yaml.startTime || yaml["start-time"],
+                yaml.endTime || yaml["end-time"],
+                yaml.weekdays
             )
         })
     }

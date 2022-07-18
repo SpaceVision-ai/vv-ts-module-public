@@ -8,8 +8,8 @@
   - start: "2022-04-12"
     end: "2022-04-30"
   include-times:
-  - start-time: "09:00"
-    end-time: "18:00"
+  - startTime: "09:00"
+    endTime: "18:00"
   exclude-times:
   - start-time: "12:00"
     end-time: "13:00"

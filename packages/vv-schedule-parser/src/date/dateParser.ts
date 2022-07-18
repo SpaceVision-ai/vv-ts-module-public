@@ -55,21 +55,21 @@ export class DateParser {
         return yaml.map((date) => {
             this.validDateYAML(date)
             if (date["date"]) {
-                return { from: utils.dateWith(date["date"], "00:00"), to: utils.dateWith(date["date"], "24:00") }
+                return { from: utils.dateWith(date.date, "00:00"), to: utils.dateWith(date.date, "24:00") }
             } else {
-                return { from: utils.dateWith(date["start"]!, "00:00"), to: utils.dateWith(date["end"]!, "24:00") }
+                return { from: utils.dateWith(date.start!, "00:00"), to: utils.dateWith(date.end!, "24:00") }
             }
         })
     }
 
     private validDateYAML(yaml: DateYAML) {
-        if (!yaml["start"] && !yaml["end"] && !yaml["date"]) {
+        if (!yaml.start && !yaml.end && !yaml.date) {
             throw new Error("하나 이상의 인자값(start, end / date)을 추가해주세요.")
         }
-        if (!!yaml["start"] && !!yaml["end"] && !!yaml["date"]) {
+        if (!!yaml.start && !!yaml.end && !!yaml.date) {
             throw new Error("모든 요소를 포함할 수 없습니다. start, end 혹은 date 중 선택해 주세요.")
         }
-        if ((!!yaml["start"] && !yaml["end"]) || !!yaml["end"] && !yaml["start"]) {
+        if ((!!yaml.start && !yaml.end) || !!yaml.end && !yaml.start) {
             throw new Error("start와 end는 함께 사용되어야 합니다.")
         }
     }
