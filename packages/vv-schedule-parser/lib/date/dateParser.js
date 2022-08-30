@@ -76,8 +76,8 @@ class DateParser {
         });
     }
     validDateYAML(yaml) {
-        yaml.start = yaml.start || yaml['start-date'] || yaml.startDate;
-        yaml.end = yaml.end || yaml['end-date'] || yaml.endDate;
+        yaml.start = yaml.start || yaml.startDate || yaml['start-date'] || yaml['start_date'];
+        yaml.end = yaml.end || yaml.endDate || yaml['end-date'] || yaml["end_date"];
         if (!yaml.start && !yaml.end && !yaml.date) {
             throw new Error("하나 이상의 인자값(start, end / date)을 추가해주세요.");
         }
