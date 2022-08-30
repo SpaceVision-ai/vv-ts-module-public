@@ -50,8 +50,8 @@ class TimeParser {
         return (isEmptyIncludes || isIncluded) && !isExcluded;
     }
     convertYamlToSchedule(yamlObject, isInclude) {
-        return yamlObject.map((yaml) => {
-            return new schedule_1.Schedule(isInclude, this.startDate, this.endDate, yaml.startTime || yaml["start-time"], yaml.endTime || yaml["end-time"], yaml.weekdays);
+        return yamlObject.map(yaml => {
+            return new schedule_1.Schedule(isInclude, this.startDate, this.endDate, yaml.startTime || yaml["start-time"] || yaml.start, yaml.endTime || yaml["end-time"] || yaml.end, yaml.weekdays);
         });
     }
     parse() {

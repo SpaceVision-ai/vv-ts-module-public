@@ -44,8 +44,8 @@
 # include & exclude test
 # exclude로 겹치는 구간만큼 include 구간이 줄어든다
 - include-dates:
-  - start: "2022-05-01"
-    end: "2022-05-31"
+  - startDate: "2022-05-01"
+    end-date: "2022-05-31"
   exclude-dates:
   - start: "2022-04-25"
     end: "2022-05-10"
@@ -55,14 +55,14 @@
 - include-dates:
   - start: "2022-05-01"
     end: "2022-05-31"
-  - start: "2022-06-10"
+  - start-date: "2022-06-10"
     end: "2022-06-30"
   - date: "2022-07-05"
   - date: "2022-07-12"
   - date: "2022-07-19"
   exclude-dates:
   - start: "2022-04-25"
-    end: "2022-05-10"
+    endDate: "2022-05-10"
   - date: "2022-05-31"
   - start: "2022-06-15"
     end: "2022-06-17"

@@ -44,13 +44,13 @@ export class TimeParser {
     }
 
     private convertYamlToSchedule(yamlObject: WeekdayAndTimesYAML, isInclude: boolean): Schedule[] {
-        return yamlObject.map((yaml: any) => {
+        return yamlObject.map(yaml => {
             return new Schedule(
                 isInclude,
                 this.startDate,
                 this.endDate,
-                yaml.startTime || yaml["start-time"],
-                yaml.endTime || yaml["end-time"],
+                yaml.startTime || yaml["start-time"] || yaml.start,
+                yaml.endTime || yaml["end-time"] || yaml.end,
                 yaml.weekdays
             )
         })
