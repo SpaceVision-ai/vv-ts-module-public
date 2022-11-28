@@ -20,6 +20,6 @@ export type WeekdayAndTimeYAML = {
     endTime?: string,
     start?: string,
     end?: string,
-    weekdays?: [string]
+    weekdays?: string[]
 }
 export type WeekdayAndTimesYAML = Array<WeekdayAndTimeYAML>
