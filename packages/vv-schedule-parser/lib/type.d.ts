@@ -19,6 +19,6 @@ export declare type WeekdayAndTimeYAML = {
     endTime?: string;
     start?: string;
     end?: string;
-    weekdays?: [string];
+    weekdays?: string[];
 };
 export declare type WeekdayAndTimesYAML = Array<WeekdayAndTimeYAML>;
