@@ -60,11 +60,16 @@ class TimeParser {
         }
         this.includes.concat(this.excludes).forEach((schedule) => {
             const dateRangeList = schedule.toRangeList();
-            if (!this.topNode) {
-                this.topNode = new dateRangeNode_1.DateRangeNode(dateRangeList[0]);
+            if (dateRangeList.length > 0) {
+                if (!this.topNode) {
+                    this.topNode = new dateRangeNode_1.DateRangeNode(dateRangeList[0]);
+                }
+                this.topNode = dateRangeApplier_1.DateRangeApplier.apply(schedule.isInclude, this.topNode, dateRangeList);
             }
-            this.topNode = dateRangeApplier_1.DateRangeApplier.apply(schedule.isInclude, this.topNode, dateRangeList);
         });
+        if (!this.topNode) {
+            this.topNode = new dateRangeNode_1.DateRangeNode(this.defaultIncludeAll);
+        }
     }
     get defaultIncludeAll() {
         return {

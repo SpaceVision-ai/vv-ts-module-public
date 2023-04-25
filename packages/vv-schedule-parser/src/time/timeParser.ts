@@ -62,11 +62,16 @@ export class TimeParser {
         }
         this.includes.concat(this.excludes).forEach((schedule) => {
             const dateRangeList = schedule.toRangeList()
-            if (!this.topNode) {
-                this.topNode = new DateRangeNode(dateRangeList[0])
+            if (dateRangeList.length > 0) {
+                if (!this.topNode) {
+                    this.topNode = new DateRangeNode(dateRangeList[0])
+                }
+                this.topNode = DateRangeApplier.apply(schedule.isInclude, this.topNode, dateRangeList)
             }
-            this.topNode = DateRangeApplier.apply(schedule.isInclude, this.topNode, dateRangeList)
         })
+        if (!this.topNode) {
+            this.topNode = new DateRangeNode(this.defaultIncludeAll)
+        }
     }
 
     private get defaultIncludeAll(): { from: Date, to: Date } {
